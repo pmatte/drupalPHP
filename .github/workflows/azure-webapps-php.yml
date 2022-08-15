@@ -75,7 +75,14 @@ jobs:
         with:
           name: php-app
           path: .
-
+  login:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure Login
+        uses: Azure/login@v1.4.5
+        with:
+          # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'                
   deploy:
     permissions:
       contents: none
